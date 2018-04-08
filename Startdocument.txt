@@ -15,9 +15,20 @@ Start: dinsdag 3 april
 
 To do:
 - Zelf nadenken over functie-eisen [Joris] 
+  - concertagenda voor publiek
+  - repetitieagenda voor leden
+  - aanpassen agenda door beheerder
+  - bladmuziek downloaden leden
+  - bladmuziek uploaden beheerder
+  - aanmelden als koorlid (email naar secretaris) publiek
+  
 - Zelf nadenken over creative design & bootstraptemplate kiezen [Paulien]
-- Setup klaar (= map waarin de website komt te staan in xamp, te delen via github) [Joris]
+- Setup klaar (= map waarin de website komt te staan in xampp, te delen via github) [Joris] 
+  gedaan
 - Meeting plannen [Paulien]
 - Tijdsplanningsdocument [Joris]
-
+- 6 uur front end publiek
+- 6 uur front end leden
+- 6 uur back end publiek
+- 6 uur back end leden
 
