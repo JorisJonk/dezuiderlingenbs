@@ -18,8 +18,10 @@ To do:
   - concertagenda voor publiek
   - repetitieagenda voor leden
   - aanpassen agenda door beheerder
+	uploaden datum + tekst naar database
   - bladmuziek downloaden leden
   - bladmuziek uploaden beheerder
+	uploaden link naar bladmuzieklocatie
   - aanmelden als koorlid (email naar secretaris) publiek
   
 - Zelf nadenken over creative design & bootstraptemplate kiezen [Paulien]
