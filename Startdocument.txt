@@ -1,0 +1,23 @@
+Opdracht: Website De Zuiderlingen, koor, standaard.
+
+Planning:
+1. Vooraf, zie to do.
+Start: dinsdag 3 april
+
+2. Meeting met de commissie (Otto + twee koorleden).
+* Functie-eisen: Wat moet er met de website kunnen, snappen ze wat dat vraagt, minimale eisen, wensen?.
+* Bootstrapthema: Groot deel ontwerp wordt uit handen genomen, alles is aan te passen, maar een basis om vanuit te vertrekken -> template uitzoeken.
+* Creative design: Foto's, plaatjes, kleurthema's, lettertypes, letterkleur, lijst van verwachtingen (zelf assertief in zijn).
+
+3. Scrum (werkmoment; thuis, na project Matthäus).
+
+4. Evaluatie: iteratief. 
+
+To do:
+- Zelf nadenken over functie-eisen [Joris] 
+- Zelf nadenken over creative design & bootstraptemplate kiezen [Paulien]
+- Setup klaar (= map waarin de website komt te staan in xamp, te delen via github) [Joris]
+- Meeting plannen [Paulien]
+- Tijdsplanningsdocument [Joris]
+
+
