@@ -9,12 +9,12 @@ Start: dinsdag 3 april
 * Bootstrapthema: Groot deel ontwerp wordt uit handen genomen, alles is aan te passen, maar een basis om vanuit te vertrekken -> template uitzoeken.
 * Creative design: Foto's, plaatjes, kleurthema's, lettertypes, letterkleur, lijst van verwachtingen (zelf assertief in zijn).
 
-3. Scrum (werkmoment; thuis, na project Matthäus).
+3. Scrum (werkmoment; thuis, na project Matthï¿½us).
 
-4. Evaluatie: iteratief. 
+4. Evaluatie: iteratief.
 
 To do:
-- Zelf nadenken over functie-eisen [Joris] 
+- Zelf nadenken over functie-eisen [Joris]
   - concertagenda voor publiek
   - repetitieagenda voor leden
   - aanpassen agenda door beheerder
@@ -23,9 +23,9 @@ To do:
   - bladmuziek uploaden beheerder
 	uploaden link naar bladmuzieklocatie
   - aanmelden als koorlid (email naar secretaris) publiek
-  
+
 - Zelf nadenken over creative design & bootstraptemplate kiezen [Paulien]
-- Setup klaar (= map waarin de website komt te staan in xampp, te delen via github) [Joris] 
+- Setup klaar (= map waarin de website komt te staan in xampp, te delen via github) [Joris]
   gedaan
 - Meeting plannen [Paulien]
 - Tijdsplanningsdocument [Joris]
@@ -34,3 +34,24 @@ To do:
 - 6 uur back end publiek
 - 6 uur back end leden
 
+commissie functie-eisen:
+
+- agenda
+  datum - beschrijving
+- contactformulier
+  php mailer
+- gastenboek (extra)
+  miniblog (github?)
+
+- agenda2
+  datum - beschrijving
+- smoelenboek (extra, maar wel leuk)
+  plaatje + naam + zanggroep
+- bestuur en commissies
+  commissienamen + ledennamen
+- repertoirelijst
+  alleen huidig repertoire + dropboxlink
+- vergaderverslagen (dropbox)
+- archief + foto's (dropbox)
+
+cms: met database. foto's uploaden is een ander verhaal
