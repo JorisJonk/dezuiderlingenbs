@@ -36,8 +36,9 @@ To do:
 
 commissie functie-eisen:
 
-- agenda
+- agenda (show 5 most)
   datum - beschrijving
+
 - contactformulier
   php mailer
 - gastenboek (extra)
@@ -48,10 +49,43 @@ commissie functie-eisen:
 - smoelenboek (extra, maar wel leuk)
   plaatje + naam + zanggroep
 - bestuur en commissies
-  commissienamen + ledennamen
+  commissienamen + ledennamen + beschrijving
 - repertoirelijst
   alleen huidig repertoire + dropboxlink
 - vergaderverslagen (dropbox)
 - archief + foto's (dropbox)
 
 cms: met database. foto's uploaden is een ander verhaal
+beheerder:
+
+agenda1
+ - add rehearsal
+ - remove event
+ - delete all events
+ Welke evenementen moeten erop komen te staan?
+ ik kan alleen de concerten bedenken
+
+agenda2
+ - add events
+ - remove event
+ - delete all events
+ Welke evenementen moeten erop komen te staan?
+ ik kan alleen de concerten en de repetities bedenken
+ bij repetities komt het voor te bereiden repertoire te staan, bij concerten de titel en het repertoire
+
+smoelenboek
+ - add is_object
+ - remove is_object
+ - zoekfunctie op naam.
+ - object = [foto, naam, stemtype, lid sinds, leeftijd, woonplaats, ...?  ]
+ - persoon zonder foto kan niet worden toegevoegd.
+
+bestuur + commissies
+- geen verschil tussen bestuur en commissie?
+
+- commissienaam + leden + beschrijving
+  wat moet veranderd kunnen worden? alleen de leden?
+  hoe vaak wisselen die commissies?
+
+repertoirelijst
+- add repertoiretitel + link
