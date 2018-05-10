@@ -145,3 +145,19 @@ a {
 a:hover, a:focus, a:active {
   color: #824027;
 }
+.publiekeagenda{
+
+}
+#pa_event1 {
+  color: black;
+}
+.ledenagenda {
+
+}
+#la_event1{
+  color: black;
+}
+
+img {
+    image-orientation: from-image;
+}

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Resume - Start Bootstrap Theme</title>
+    <title>de Zuiderlingen</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,9 @@
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link href="css/resume.css" rel="stylesheet">
     <link href="css/resume.min.css" rel="stylesheet">
+
 
   </head>
 
@@ -62,6 +64,42 @@
     </nav>
 
     <div class="container-fluid p-0">
+      <?php
+      if (isset($_POST['pa_bevestig'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['pa_naam']);
+        $eventdatum = ($_POST['pa_datum']);
+
+        if (!mysqli_query($con,"INSERT INTO publiekeagenda (eventnaam, eventdatum) VALUES ('$naamevent', '$eventdatum')"))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+
+      if (isset($_POST['pa_verwijder'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['pa_naam_vw']);
+
+        if (!mysqli_query($con,"DELETE FROM publiekeagenda WHERE eventnaam = '$naamevent'"))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+        ?>
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
@@ -69,53 +107,39 @@
 
           <div class="subheading mb-5">
             <p> evenement toevoegen </p>
-            <form>
-            <input type= "text"  id="pa_naam" placeholder="naam evenement"></input>
-            <input type= "date"  id="pa_datum" ></input>
-            <button class="login_button" id="pa_bevestig">bevestig</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#about" method="post">
+            <input type= "text" name="pa_naam" id="pa_naam" placeholder="naam evenement"></input>
+            <input type= "date" name="pa_datum"  id="pa_datum" ></input>
+            <button class="login_button" name="pa_bevestig" id="pa_bevestig">bevestig</button>
           </div>
         </form>
           <div class="subheading mb-5">
             <p> evenement verwijderen</p>
-            <form>
-            <input type= "text" id="pa_naam_vw" placeholder="naam evenement"></input>
-            <button id="pa_verwijder">verwijder</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#about" method="post">
+            <input type= "text" name="pa_naam_vw" id="pa_naam_vw" placeholder="naam evenement"></input>
+            <button name="pa_verwijder" id="pa_verwijder">verwijder</button>
           </form>
           </div>
-            <ul class="list-inline list-social-icons mb-0">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
+<div class="publiekeagenda">
+          <?php
+          $con = mysqli_connect("localhost","root","","dezuiderlingen");
+
+          $result = mysqli_query($con,"SELECT eventnaam, eventdatum FROM publiekeagenda");
+
+
+          if ($numrows=mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_array($result)){
+              echo "<div id='pa_event".$numrows."'>";
+              echo $row[1]. " ";
+              echo $row[0];
+              echo "<br>";
+              echo "</div>";
+
+            }
+          }
+          else echo "geen data";
+           ?>
+</div>
         </div>
       </section>
 
@@ -133,7 +157,7 @@
         $naamevent =  ($_POST['naamevent']);
         $eventdatum = ($_POST['eventdatum']);
         $repertoire = ($_POST['repertoire']);
-      
+
 
         if (!mysqli_query($con,"INSERT INTO ledenagenda (naamevent, eventdatum, repertoire) VALUES ('$naamevent', '$eventdatum', '$repertoire')"))
           {
@@ -143,13 +167,33 @@
 
 
       }
-      ?>
+
+
+      if (isset($_POST['la_verwijder'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['la_naam_vw']);
+        if (!mysqli_query($con,"DELETE FROM ledenagenda WHERE naamevent = '$naamevent'"))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+
+
+      }
+        ?>
+
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div class="my-auto">
           <h2 class="mb-5">Ledenagenda</h2>
           <div class="subheading mb-5">
             <p> evenement toevoegen </p>
-            <form action="" method="post">
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#experience" method="post">
             <input type= "text" name="naamevent" id="la_naam" placeholder="naam evenement"></input>
             <input type= "text" name="repertoire" id="la_repertoir" placeholder="repertoire"></input>
             <input type= "date" name="eventdatum" id="la_datum" ></input>
@@ -158,17 +202,89 @@
           </form>
           <div class="subheading mb-5">
             <p> evenement verwijderen</p>
-            <form>
-            <input type= "text" id="la_naam_vw" placeholder="naam evenement"></input>
-            <button class="login_button" id="la_verwijder">verwijder</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#experience" method="post">
+            <input type= "text" name="la_naam_vw" id="la_naam_vw" placeholder="naam evenement"></input>
+            <button name="la_verwijder" id="la_verwijder">verwijder</button>
           </form>
           </div>
+          <div class="ledenagenda">
+                    <?php
+                    $con = mysqli_connect("localhost","root","","dezuiderlingen");
 
+                    $result = mysqli_query($con,"SELECT naamevent, eventdatum, repertoire FROM ledenagenda");
+
+                    if ($numrows=mysqli_num_rows($result)>0){
+                      while($row=mysqli_fetch_array($result)){
+                        echo "<div id='la_event".$numrows."'>";
+                        echo $row[1]. " ";
+                        echo $row[0]. " ";
+                        echo "<br>";
+                        echo $row[2];
+                        echo "<br>";
+                        echo "<br>";
+                        echo "</div>";
+
+                      }
+                    }
+                    else echo "geen data";
+                     ?>
+          </div>
 
         </div>
 
       </section>
+      <?php
+       if(isset($_POST['sb_submit'])){
+          $name       = $_FILES['file']['name'];
+          $temp_name  = $_FILES['file']['tmp_name'];
+          $sb_naam    = $_POST['sb_naam'];
+          $sb_datum   = $_POST['sb_datum'];
+          $sb_woonplaats = $_POST['sb_woonplaats'];
+          $sb_stemgroep = $_POST['sb_stemgroep'];
+          if(isset($name)){
+              if(!empty($name)){
+                  $location = 'uploads/';
+                  if(move_uploaded_file($temp_name, $location.$name)){
 
+                  }
+              }
+          }  else {
+              echo 'Error bij uploaden foto';
+          }
+
+      $con=mysqli_connect("localhost","root","","dezuiderlingen");
+      // Check connection
+      if (mysqli_connect_errno())
+        {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+          if (!mysqli_query($con,"INSERT INTO smoelenboek (picturelink, naam, stemtype, lidsinds, woonplaats) VALUES ('$name', '$sb_naam', '$sb_stemgroep', '$sb_datum', '$sb_woonplaats')"))
+        {
+        echo("Error description: " . mysqli_error($con));
+        }
+        mysqli_close($con);
+
+}
+if (isset($_POST['sb_verwijder'])){
+
+  $con=mysqli_connect("localhost","root","","dezuiderlingen");
+  // Check connection
+  if (mysqli_connect_errno())
+    {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+  $naamevent =  ($_POST['sb_naam_vw']);
+
+  if (!mysqli_query($con,"DELETE FROM smoelenboek WHERE naam = '$naamevent'"))
+    {
+    echo("Error description: " . mysqli_error($con));
+    }
+    mysqli_close($con);
+
+
+}
+
+      ?>
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
         <div class="my-auto">
           <h2 class="mb-5">Smoelenboek</h2>
@@ -176,77 +292,220 @@
           <div class="subheading mb-5">
             <p> smoel toevoegen </p>
             <div class="smoeltoevoegen">
-          <form> <!--action="progress uploads to database or upload forlder" -->
-            <input type="file" name="pic" accept="image/*"></input><br></br>
-            <input type= "text"  id="sb_naam" placeholder="Voor- en achternaam"></input><br></br>
-            <input list= "stemtypes"  id="sb_stemtype" placeholder="Stemtype">
-            <datalist id="stemtypes">
-              <option value="Sopraan">
-                <option value="Alt">
-                  <option value="Tenor">
-                    <option value="Bas">
-                    </datalist><br></br>
-            <input type= "date"  id="sb_datum" ></input><br></br>
-            <button id="sb_bevestig">bevestig</button>
-          </div>
-          </form>
+    <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#education" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file"><br><br>
+    <input type="text" name="sb_naam" placeholder="Voor- en achternaam"><br><br>
+    <input type="date" name="sb_datum"><br><br>
+    <input type="text" name="sb_woonplaats" placeholder="Woonplaats"><br><br>
+    <select name="sb_stemgroep">
+  <option value="Sopraan">Sopraan</option>
+  <option value="Alt">Alt</option>
+  <option value="Tenor">Tenor</option>
+  <option value="Bas">Bas</option>
+</select> <br><br>
+
+
+    <input type="submit" value="submit" name="sb_submit">
+    </form>
+
+
+            </div>
         </div>
           <div class="subheading mb-5">
             <p> smoel verwijderen</p>
-            <form>
-            <input type= "text" id="sb_naam_vw" placeholder="naam"></input>
-            <button class="login_button" id="sb_verwijder">verwijder</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#education" method="post" enctype="multipart/form-data">
+            <input type= "text" name="sb_naam_vw" id="sb_naam_vw" placeholder="naam"></input>
+            <input type="submit" name="sb_verwijder" value="verwijder"></input>
           </form>
           </div>
+          <?php
+          $con = mysqli_connect("localhost","root","","dezuiderlingen");
 
+          $result = mysqli_query($con,"SELECT picturelink, naam, stemtype, lidsinds, woonplaats FROM smoelenboek");
+
+
+          if ($numrows=mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_array($result)){
+              echo "<div id='pa_event".$numrows."'>";
+              echo "<img src=" ."'uploads/". $row[0]."'". "class='sb_pic'". "width='200' height='200'". "alt='geen afbeelding'>";
+              echo "<div id='sb_info'>";
+              echo $row[1]. " ";
+              echo $row[2] . " ";
+                echo $row[3] . " ";
+                  echo $row[4] . " ";
+
+              echo "<br>";
+              echo "</div>";
+
+            }
+          }
+          else echo "geen data";
+           ?>
+           <script> picture = '<?php echo $row[0] . " ";?>';
+           document.getelementbyid("smoelenplaatje").InnerHTML("<img src= alt="Mountain View">")
+           </script>
         </div>
       </section>
+      <?php
+      if (isset($_POST['cl_bevestig'])){
 
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['cl_com']);
+        $eventdatum = ($_POST['cl_lid']);
+
+
+        if (!mysqli_query($con,"INSERT INTO bestuurencommissies (commissienaam, lid1) VALUES ('$naamevent', '$eventdatum')"))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+
+      if (isset($_POST['cl_verwijder'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['cl_com_vw']);
+        $naamlid = ($_POST['cl_lid_vw']);
+
+        if (!mysqli_query($con,"DELETE FROM bestuurencommissies WHERE commissienaam = '$naamevent' AND lid1 = '$naamlid' "))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+        ?>
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
         <div class="my-auto">
           <h2 class="mb-5">Bestuur en Commissies</h2>
           <div class="subheading mb-5">
             <p> Commissielid toevoegen </p>
-            <form>
-            <input type= "text"  id="bc_commissie" placeholder="naam commissie"></input>
-            <input type= "text"  id="bc_lid" placeholder="naam lid"></input>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#skills" method="post" enctype="multipart/form-data">
+            <input type= "text" name="cl_com" id="cl_com" placeholder="naam commissie"></input>
+            <input type= "text" name="cl_lid" id="cl_lid" placeholder="naam lid"></input>
 
-            <button id="la_bevestig">bevestig</button>
+            <button name ="cl_bevestig" id="cl_bevestig">bevestig</button>
           </div>
           </form>
           <div class="subheading mb-5">
             <p> Commissielid verwijderen</p>
-            <form>
-            <input type= "text" id="bc_commissie_vw" placeholder="naam commissie"></input>
-            <input type= "text" id="bc_lid_vw" placeholder="naam lid"></input>
-            <button class="login_button" id="la_verwijder">verwijder</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#skills" method="post" enctype="multipart/form-data">
+            <input type= "text" name="cl_com_vw" id="cl_com_vw" placeholder="naam commissie"></input>
+            <input type= "text" name="cl_lid_vw" id="cl_lid_vw" placeholder="naam lid"></input>
+            <button class="login_button" name ="cl_verwijder" id="cl_verwijder">verwijder</button>
           </form>
           </div>
+          <?php
+          $con = mysqli_connect("localhost","root","","dezuiderlingen");
 
+          $result = mysqli_query($con,"SELECT lid1, commissienaam FROM bestuurencommissies");
+
+
+          if ($numrows=mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_array($result)){
+              echo "<div id='cl_com".$numrows."'>";
+              echo $row[0]. " ";
+              echo "<div id='cl_lid".$numrows."'>";
+              echo $row[1];
+              echo "<br>";
+              echo "</div>";
+
+            }
+          }
+          else echo "geen data";
+           ?>
         </div>
       </section>
+      <?php
+      if (isset($_POST['rl_bevestig'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['rl_prog']);
+        $eventdatum = ($_POST['rl_reper']);
+        echo $eventdatum;
+        echo $naamevent;
+
+
+        if (!mysqli_query($con,"INSERT INTO repertoirelijst (programmanaam, repertoire1) VALUES ('$naamevent', '$eventdatum')"))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+
+      if (isset($_POST['rl_verwijder'])){
+
+        $con=mysqli_connect("localhost","root","","dezuiderlingen");
+        // Check connection
+        if (mysqli_connect_errno())
+          {
+          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+        $naamevent =  ($_POST['rl_prog_vw']);
+        $naamlid = ($_POST['rl_rep_vw']);
+
+        if (!mysqli_query($con,"DELETE FROM repertoirelijst WHERE programmanaam = '$naamevent' AND repertoire1 ='$naamlid' "))
+          {
+          echo("Error description: " . mysqli_error($con));
+          }
+          mysqli_close($con);
+      }
+        ?>
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
         <div class="my-auto">
           <h2 class="mb-5">Repertoirelijst</h2>
           <div class="subheading mb-5">
             <p> repertoire toevoegen </p>
-            <form>
-            <input type= "text"  id="la_naam" placeholder="naam programma"></input>
-            <input type= "text"  id="la_repertoir" placeholder="naam repertoire"></input>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#interests" method="post" enctype="multipart/form-data">
+            <input type= "text" name="rl_prog" id="rl_prog" placeholder="naam programma"></input>
+            <input type= "text" name="rl_reper" id="rl_rep" placeholder="naam repertoire"></input>
 
-            <button id="la_bevestig">bevestig</button>
+            <button name= "rl_bevestig" id="rl_bevestig">bevestig</button>
           </div>
           </form>
           <div class="subheading mb-5">
             <p> repertoire verwijderen</p>
-            <form>
-            <input type= "text" id="la_naam_vw" placeholder="naam programma"></input>
-            <input type= "text" id="la_naam_vw" placeholder="naam repertoire"></input>
-            <button class="login_button" id="la_verwijder">verwijder</button>
+            <form action="http://localhost/zuiderlingen2/dezuiderlingenbs/dezuiderlingenbs/dezuiderlingen/beheerder.php#interests" method="post" enctype="multipart/form-data">
+            <input type= "text" name="rl_prog_vw" id="rl_prog_vw" placeholder="naam programma"></input>
+            <input type= "text" name="rl_rep_vw" id="rl_rep_vw" placeholder="naam repertoire"></input>
+            <button class="login_button" name="rl_verwijder" id="rl_verwijder">verwijder</button>
           </form>
           </div>
         </div>
+        <?php
+        $con = mysqli_connect("localhost","root","","dezuiderlingen");
+
+        $result = mysqli_query($con,"SELECT programmanaam, repertoire1 FROM repertoirelijst");
+
+
+        if ($numrows=mysqli_num_rows($result)>0){
+          while($row=mysqli_fetch_array($result)){
+            echo "<div id='rl_programma".$numrows."'>";
+            echo $row[0]. " ";
+            echo "<div id='rl_repertoire".$numrows."'>";
+            echo $row[1];
+            echo "<br>";
+            echo "</div>";
+
+          }
+        }
+        else echo "geen data";
+         ?>
       </section>
 
     </div>
