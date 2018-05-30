@@ -434,7 +434,7 @@ if (isset($_POST['sb_verwijder'])){
           }
         $naamevent =  ($_POST['rl_prog']);
         $eventdatum = ($_POST['rl_reper']);
-      
+
 
 
         if (!mysqli_query($con,"INSERT INTO repertoirelijst (programmanaam, repertoire1) VALUES ('$naamevent', '$eventdatum')"))
