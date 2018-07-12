@@ -158,6 +158,117 @@ a:hover, a:focus, a:active {
   color: black;
 }
 
-img {
-    image-orientation: from-image;
+
+.poster{
+
+  width: 100%;
+  height: auto;
+  margin-bottom: -2%;
+  max-width: 700px;
+
+}
+.pa_titel{
+  margin-bottom: 5%;
+
+}
+.pa_concert{
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+margin-bottom: 2%;
+color: black;
+max-width: 700px;
+}
+
+.pa_tekst{
+  padding: 5%;
+  max-width: 700px;
+}
+
+.alinea1{
+  width: 30%;
+   max-width: 700px;
+
+
+}
+.alinea2{
+    width: 100%;
+     max-width: 700px;
+
+}
+.alinea3{
+ width: 100%;
+ max-width: 700px;
+
+
+}
+.alinea4{
+    width: 30%;
+     max-width: 700px;
+}
+
+.pa_alinea1{
+  margin-bottom: 4%;
+   max-width: 700px;
+   word-break: break-all;
+}
+
+.pa_alinea2{
+word-break: break-all;
+
+    height: auto;
+
+     max-width: 700px;
+}
+.pa_alinea3{
+word-break: break-all;
+    height: auto;
+
+     max-width: 700px;
+}
+
+
+.pa_alinea4{
+  margin-top: 4%;
+   max-width: 700px;
+   word-break: break-all;
+}
+.pa_alinea5{
+   max-width: 700px;
+   word-break: break-all;
+
+}
+.sb_pic{
+  image-orientation: 100deg;
+  opacity: 0.6;
+}
+#pa_image{
+  opacity: 0.2;
+}
+
+
+@media (min-width: 768px) {
+    .carousel-multi-item-2 .col-md-3 {
+        float: left;
+        width: 25%;
+        max-width: 100%; } }
+
+.carousel-multi-item-2 .card img {
+    border-radius: 2px; }
+    .controls-top{
+      margin-left:47%;
+      margin-bottom: 2%;
+    }
+
+    .img-fluid{
+      object-fit: contain;
+      width:100%;
+      border-style: hidden;
+    }
+    .card{
+      border-style: hidden;
+    }
+.commissiebox{
+  float: left;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
